@@ -1,0 +1,9 @@
+<div class="EditPost">
+
+	<input type="text" class="title" ng-show="toggleEditTitle" ng-model="updatedPost.title">
+	<div class="titleDiv" ng-click="toggleEditTitleFn()"" ng-hide="toggleEditTitle"><h1>{{updatedPost.title}}</h1></div>
+	<textarea name="" id="" cols="30" rows="10" class="post" ng-show="toggleEditPost" ng-model="updatedPost.post"></textarea>
+	<div class="postDiv" ng-click="toggleEditPostFn()" ng-hide="toggleEditPost"><h3>{{updatedPost.post}}</h3>
+</div>
+<button type="button" class="submitEditBtn" ng-click="patchEditPost()">Submit</button>
+<button type="button" class="deleteEditBtn" ng-click="Remove(updatedPost)">Delete</button>
