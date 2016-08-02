@@ -13,9 +13,7 @@ app.controller('AdminCtrl', function($scope, $location, PostFactory, FirebaseURL
 		date: "",
 		image: $scope.addImage
 	};
-
 	
-
 	ViewPostsFactory.getPosts()
 	.then(function(postCollection) {
 		$scope.posts = postCollection

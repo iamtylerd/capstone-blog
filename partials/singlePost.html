@@ -2,8 +2,8 @@
 	<div class="singleTitle">
 		<h1>{{singlePost.title}}</h1>
 	</div>
-	<div class="sinlgeImage">
-		<img src={{singlePost.image}}/>
+	<div class="slideshow">
+		<img class="singleImageSlideshow" ng-repeat="slide in slides" ng-if="isCurrentSlideIndex($index)" ng-src="{{slide.src}}"/>
 	</div>
 	<div ta-bind ng-model="singlePost.post"></div>
 </div>

@@ -1,12 +1,16 @@
 "use strict";
 
-app.factory("PostFactory", function(FirebaseURL, $q, $http){
+app.factory("PostFactory", function($rootScope, FirebaseURL, $q, $http, localStorageService){
+let currentUser = localStorageService.get("currentUser")
+console.log("tokens", currentUser.stsTokenManager)
+
 
 	let postNewBlog = function(newPost) {
-			console.log(newPost);
+		let accessToken = currentUser.stsTokenManager.accessToken
+		console.log(newPost)
 	        return $q(function(resolve, reject) {
-	            $http.post(`${FirebaseURL}/post.json`,
-	                JSON.stringify(newPost))
+	            $http.post(`${FirebaseURL}post.json?auth=${accessToken}`,
+	                newPost)
 	                .success(function(ObjFromFirebase) {
 	                    resolve(ObjFromFirebase)
 	                })
@@ -15,6 +19,7 @@ app.factory("PostFactory", function(FirebaseURL, $q, $http){
 	                });
 	        });
 	    };
+
 
    let saveId = function(post) {
 		console.log(post.name)

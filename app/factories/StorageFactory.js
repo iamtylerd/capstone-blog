@@ -34,7 +34,6 @@ app.factory("StorageFactory", function(FirebaseURL, $q, $http, localStorageServi
 		  	let imgRef = storageRef.child('img/' + file.name);
 			imgRef.getDownloadURL().then(function(url) {
 			imageUrl.push(url)
-			console.log(imageUrl)
 		  // Handle successful uploads on complete
 		  // For instance, get the download URL: https://firebasestorage.googleapis.com/...
 		 	});

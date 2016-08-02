@@ -1,6 +1,6 @@
 "use strict";
 
-const app = angular.module('app', ['ngRoute', 'LocalStorageModule', 'textAngular', 'ngFileUpload', 'ngMaterial'])
+const app = angular.module('app', ['ngRoute', 'LocalStorageModule', 'textAngular', 'ngFileUpload', 'ngMaterial', 'ngAnimate'])
 .constant('FirebaseURL', "https://capstone-blog.firebaseio.com/");
 
 app.config(function($routeProvider) {

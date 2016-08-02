@@ -1,8 +1,9 @@
 "use strict";
 
-app.controller('LoginCtrl', function($scope, $location, UserFactory, localStorageService, StorageFactory){
+app.controller('LoginCtrl', function($rootScope, $scope, $location, UserFactory, localStorageService, StorageFactory){
   let userExists = false
   let currentUser = null
+  
 
   $scope.login = function(){
     let provider = new firebase.auth.GoogleAuthProvider();
@@ -11,6 +12,7 @@ app.controller('LoginCtrl', function($scope, $location, UserFactory, localStorag
       .then(function(userList){
         currentUser = firebase.auth().currentUser;
         let currentUid = firebase.auth().currentUser.uid;
+        console.log(firebase.auth().currentUser)
         console.log("currentUser", currentUid)
         let userArray = [];
         for (user in userList){
@@ -52,19 +54,6 @@ app.controller('LoginCtrl', function($scope, $location, UserFactory, localStorag
     }
   });
 
-//   // Create the file metadata
-// var metadata = {
-//   contentType: 'image/jpeg'
-// };
-
-// // var file = {
-// //   "name": "app/img/IMG_1287.jpg"
-// // }
-
-//  $scope.uploadImg = function (file) {
-//   console.log(file);
-//   StorageFactory.uploadTask(file, metadata)
-// };
   
 
 
