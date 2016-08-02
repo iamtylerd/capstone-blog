@@ -1,5 +1,4 @@
 app.controller('EditPostCtrl', function($routeParams, $scope, $location, PostFactory, FirebaseURL, localStorageService, ViewPostsFactory){
-	tinymce.init({ selector:'textarea' })
 	let currentUser = localStorageService.get("currentUser");
 	$scope.user = currentUser;
 	$scope.toggleEditTitle = false;

@@ -29,5 +29,9 @@ app.factory("PostFactory", function(FirebaseURL, $q, $http){
                 });
         });
 	};
+
+	let keys = function (post) {
+		return $q(function(resolve, reject) {})
+	}
     return {postNewBlog, saveId}
 });

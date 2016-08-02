@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('LoginCtrl', function($scope, $location, UserFactory, localStorageService){
+app.controller('LoginCtrl', function($scope, $location, UserFactory, localStorageService, StorageFactory){
   let userExists = false
   let currentUser = null
 
@@ -50,5 +50,27 @@ app.controller('LoginCtrl', function($scope, $location, UserFactory, localStorag
       })
       localStorageService.set("currentUser", "null")
     }
-  })
+  });
+
+//   // Create the file metadata
+// var metadata = {
+//   contentType: 'image/jpeg'
+// };
+
+// // var file = {
+// //   "name": "app/img/IMG_1287.jpg"
+// // }
+
+//  $scope.uploadImg = function (file) {
+//   console.log(file);
+//   StorageFactory.uploadTask(file, metadata)
+// };
+  
+
+
+
+
+
+
+
 })

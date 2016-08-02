@@ -9,6 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-aria": "^1.5.8",
+    "angular-material": "^1.1.0-rc.5",
     "gulp": "^3.9.1",
     "gulp-jshint": "^2.0.1",
     "gulp-sass": "^2.3.2",
@@ -16,6 +20,7 @@
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.8",
     "jshint": "^2.9.2",
-    "jshint-stylish": "^2.2.0"
+    "jshint-stylish": "^2.2.0",
+    "ng-file-upload": "^12.0.4"
   }
 }

@@ -1,10 +1,8 @@
-app.controller('AdminCtrl', function($scope, $location, PostFactory, FirebaseURL, localStorageService, ViewPostsFactory){
-	tinymce.init({ selector:'textarea' })
+app.controller('AdminCtrl', function($scope, $location, PostFactory, FirebaseURL, localStorageService, ViewPostsFactory, Upload, $mdDialog, StorageFactory){
 	let currentUser = localStorageService.get("currentUser");
 	$scope.user = currentUser;
-	// let date = new Date();
-	// $scope.FromDate = date;
-	// console.log($scope.FromDate)
+	$scope.htmlVariable;
+	$scope.addImage;
 	
 	$scope.newBlogPost = {
 		post: "",
@@ -12,7 +10,8 @@ app.controller('AdminCtrl', function($scope, $location, PostFactory, FirebaseURL
 		category: "",
 		tags: "",
 		uid: currentUser.uid,
-		date: "$scope.FromDate"
+		date: "",
+		image: $scope.addImage
 	};
 
 	
@@ -32,6 +31,10 @@ app.controller('AdminCtrl', function($scope, $location, PostFactory, FirebaseURL
 
 	$scope.AddPost = function () {
 		console.log($scope.newBlogPost)
+		let date = new Date();
+		$scope.newBlogPost.image = StorageFactory.getImageUrl()
+		$scope.newBlogPost.date = date;
+		$scope.newBlogPost.post = $scope.htmlVariable;
 		PostFactory.postNewBlog($scope.newBlogPost)
 		.then(function () {
 			ViewPostsFactory.getPosts()
@@ -46,6 +49,23 @@ app.controller('AdminCtrl', function($scope, $location, PostFactory, FirebaseURL
 		$location.url(`/edit/${id}`)
 	}
 
+	$scope.openModalPhoto = function () {
+		$mdDialog.show({
+			contentElement:
+			document.querySelector('#upload-modal')
+		});
+	};
+
+	$scope.hideModal = function() {
+    	$mdDialog.hide();
+ 	};
+	
+
+	 $scope.uploadImg = function (file) {
+	  console.log(file.name);
+	  StorageFactory.uploadTask(file, StorageFactory.getMetadata())
+	  $scope.hideModal();
+	};
 
 
 })

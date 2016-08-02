@@ -6,13 +6,23 @@ app.factory("ViewPostsFactory", function(FirebaseURL, $q, $http){
 		return $q(function(resolve, reject) {
 			$http.get(`${FirebaseURL}/post.json`)
 			.success(function(postObject) {
-				let postCollection = postObject;
-				Object.keys(postCollection).forEach(function(key) {
-					postCollection[key].id=key;
-					post.push(postCollection[key]);
-				})
-				console.log(post)
-				resolve(post);
+				if (postObject) {
+					let postCollection = postObject;
+					Object.keys(postCollection).forEach(function(key) {
+						postCollection[key].id=key;
+						postCollection[key].date = new Date(postCollection[key].date)
+						post.push(postCollection[key]);
+					})
+					post.sort(function (a,b) {
+						a = a.date
+						b = b.date
+						return a>b ? -1 : a<b ? 1:0;
+					})
+					console.log(post)
+					resolve(post);
+				} else {
+					resolve(postObject);
+				}
 			})
 			.error(function(error) {
 				reject(error);
@@ -56,6 +66,7 @@ app.factory("ViewPostsFactory", function(FirebaseURL, $q, $http){
           });
         });
       };
+
 
 	return {getPosts, getEditPost, sendEditPost, deletePost}
 })

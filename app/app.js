@@ -1,6 +1,6 @@
 "use strict";
 
-const app = angular.module('app', ['ngRoute', 'LocalStorageModule'])
+const app = angular.module('app', ['ngRoute', 'LocalStorageModule', 'textAngular', 'ngFileUpload', 'ngMaterial'])
 .constant('FirebaseURL', "https://capstone-blog.firebaseio.com/");
 
 app.config(function($routeProvider) {
@@ -22,5 +22,9 @@ app.config(function($routeProvider) {
         	templateUrl: 'partials/edit.html',
         	controller: 'EditPostCtrl'
         }).
+        when('/posts/:id', {
+        	templateUrl: 'partials/singlePost.html',
+        	controller: 'SinglePostCtrl'
+        }).	
         otherwise('/');
 });

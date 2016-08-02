@@ -4,13 +4,17 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Angular Blog</title>
-	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
- 	 <script>tinymce.init({ selector:'textarea' });</script>
+	
 	<link href='https://fonts.googleapis.com/css?family=Raleway:400,200,600' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel='stylesheet' href='lib/bower_components/font-awesome/css/font-awesome.min.css'>
+	<link rel='stylesheet' href='lib/node_modules/materialize-css/dist/css/materialize.min.css'>
+	<link rel='stylesheet' href='lib/node_modules/angular-material/angular-material.css'>
+	<link rel='stylesheet' href='lib/bower_components/textAngular/dist/textAngular.css'>
 	<link rel="stylesheet" href="styles/main.css">
 </head>
 <body ng-app="app">
-
+	<!-- NAV include -->
 	<div id="container">
 		<div ng-view></div>
 	</div>
@@ -21,6 +25,14 @@
 	<script type="text/javascript" src="lib/bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="lib/bower_components/angular-route/angular-route.min.js"></script>
 	<script type="text/javascript" src="lib/bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+	<script src='lib/bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
+	<script src='lib/bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
+	<script src='lib/bower_components/textAngular/dist/textAngular.min.js'></script>
+	<script src='lib/node_modules/ng-file-upload/dist/ng-file-upload.min.js'></script>
+	<script src="lib/node_modules/angular-aria/angular-aria.js"></script>
+	<script src="lib/node_modules/angular-animate/angular-animate.js"></script>
+	<script src="lib/node_modules/angular-material/angular-material.js"></script>
+	<script src="lib/node_modules/materialize-css/dist/js/materialize.min.js"></script>
 <!-- Firebase Init -->
 	<script ng-include src="partials/fireInit.html"></script>
 <!-- App -->
@@ -29,10 +41,13 @@
 	<script src="app/factories/UserFactory.js"></script>
 	<script src="app/factories/PostFactory.js"></script>
 	<script src="app/factories/ViewPostsFactory.js"></script>
+	<script src="app/factories/StorageFactory.js"></script>
 <!-- Controllers -->
 	<script src="app/controllers/LoginCtrl.js"></script>
 	<script src="app/controllers/AdminCtrl.js"></script>
 	<script src="app/controllers/ViewPostsCtrl.js"></script>
 	<script src="app/controllers/EditPostCtrl.js"></script>
+	<script src="app/controllers/SinglePostCtrl.js"></script>
+	<script src="app/controllers/NavCtrl.js"></script>
 </body>
 </html>
