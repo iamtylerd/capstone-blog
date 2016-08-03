@@ -1,6 +1,6 @@
 <div ng-include="'partials/nav.html'"></div>
 <div ng-show="LoggedIn">
-<button ng-click="logout()" class="col s12 right waves-effect waves-light btn deep-orange darken-3">Logout</button>
+<button ng-click="logout()" class="logout col s12 right waves-effect waves-light btn deep-orange darken-3">Logout</button>
 
 <div class="newBlogPost" >
 	<div class="createNewPost">
@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="row">
-        <div class="col s12 m7" ng-repeat="post in posts | filter: searchText.search">
+        <div class="col s12 m6" ng-repeat="post in posts | filter: searchText.search">
           <div class="card">
             <div class="card-image">
               <img ng-src="{{post.image}}">
