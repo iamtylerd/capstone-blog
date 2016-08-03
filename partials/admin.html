@@ -1,14 +1,19 @@
 <div ng-include="'partials/nav.html'"></div>
+<div ng-show="LoggedIn">
+<button ng-click="logout()" class="col s12 right waves-effect waves-light btn deep-orange darken-3">Logout</button>
+
 <div class="newBlogPost" >
-	<h2>Make a new Post!</h2>
-	<div class="row">
+	<div class="createNewPost">
+		<h2>Make a new Post!</h2><a class="btn-floating btn-large waves-effect waves-light teal accent-4" ng-click="toggleCreateNewPost()"><i class="material-icons">+</i></a>
+	</div>
+
+	<div class="row" ng-show="CreateNewPost">
 		<form class="col s12">
 			<div class="input-field col s6">
 				<input id="title" type="text" class="validate" ng-model="newBlogPost.title"/>
 				<label for="title">Blog Title</label>
 			</div>
 		</form>
-	</div>
 	<div text-angular class="textAngDiv" ng-model="htmlVariable">
 		<textarea placeholder="Blog Post" cols="30" rows="10" ng-model="htmlVariable"></textarea>
 	</div>
@@ -16,17 +21,35 @@
 		<button class="btn btn-normal" ng-click="openModalPhoto()">Add Photo</button>
 		<button class="btn btn-normal" ng-click="AddPost()">Add</button>
 	</div>
-	<button ng-click="logout()">Logout</button>
+	</div>
 
-	<div ng-repeat="post in posts | filter: searchText.search">
-		<div class="AdminPosts" ng-click="EditPostLocation(post.id)">
-			<div class="adminPostTitle">
-				{{post.title}}			
+	<div class="row">
+        <div class="col s12 m7" ng-repeat="post in posts | filter: searchText.search">
+          <div class="card">
+            <div class="card-image">
+              <img ng-src="{{post.image}}">
+              <span class="card-title">{{post.title}}</span>
+            </div>
+            <div class="card-content" ta-bind ng-model="post.post" ng-click="EditPostLocation(post.id)">
+            </div>
+            <div class="card-action">
+              <a ng-click="ViewPost(post.id)">View Post</a>
+            </div>
+          </div>
+        </div>
+      </div>
+	
+	<!-- <div class="row" layout-margin>
+		<div ng-repeat="post in posts | filter: searchText.search">
+			<div class="AdminPosts col s3" ng-click="EditPostLocation(post.id)">
+				<div class="adminPostTitle">
+					{{post.title}}			
+				</div>
+				<div class="adminPostPost" ta-bind ng-model="post.post"></div>
 			</div>
-			<div ta-bind ng-model="post.post"></div>
 		</div>
 	</div>
-</div>
+</div> -->
 
 <div style="visibility: hidden">
 	<div class="md-dialog-container" id="upload-modal">
@@ -43,4 +66,5 @@
 			</form>
 		</md-dialog>
 	</div>
+</div>
 </div>

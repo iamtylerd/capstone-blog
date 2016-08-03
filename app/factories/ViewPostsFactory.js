@@ -1,6 +1,7 @@
 "use strict";
 
-app.factory("ViewPostsFactory", function(FirebaseURL, $q, $http){
+app.factory("ViewPostsFactory", function(FirebaseURL, $q, $http, localStorageService){
+	let currentUser = localStorageService.get("currentUser")
 	let getPosts = function() {
 		let post = [];
 		return $q(function(resolve, reject) {
@@ -45,10 +46,13 @@ app.factory("ViewPostsFactory", function(FirebaseURL, $q, $http){
 	};
 
 	let sendEditPost = function(id, updatedObj) {
+		let accessToken = currentUser.stsTokenManager.accessToken
 		let patchObj = {};
+		console.log(updatedObj)
 		return $q(function(resolve, reject) {
-			$http.put(`${FirebaseURL}/post/${id}.json`, updatedObj)
+			$http.put(`${FirebaseURL}post/${id}.json?auth=${accessToken}`, updatedObj)
 			.success(function(response) {
+				console.log("put", response)
 				resolve(response);
 			})
 			.error(function (error) {

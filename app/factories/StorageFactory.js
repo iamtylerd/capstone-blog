@@ -9,12 +9,12 @@ app.factory("StorageFactory", function(FirebaseURL, $q, $http, localStorageServi
 	var storageRef = firebase.storage().ref();
 
 	// Image Ref
-	var imagesRef = storageRef.child('images');
+	var imagesRef = storageRef.child('img');
 
   // Create the file metadata
 	let getMetadata = function() {
 		let metadata = {
-		  contentType: 'image/png'
+		  contentType: 'image/jpg'
 		  // "uid": currentUser.uid
 		};
 		return metadata
