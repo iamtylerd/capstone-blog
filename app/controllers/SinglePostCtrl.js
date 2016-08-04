@@ -47,5 +47,6 @@ app.controller('SinglePostCtrl', function($scope, $location, $routeParams, ViewP
 	  $scope.speedDial.isOpen = false;
 	  $scope.speedDial.mode = 'md-scale';
 
+	  $scope.dynamicUrl = `posts/${$routeParams.id}`;
 
 	})
