@@ -23,10 +23,44 @@ body {
 	a {
 		margin-left: 1rem;
 	}
+	i {
+		align-self: center;
+	}
 }
 
-.AdminPosts {
-	min-height: 100px;
-	padding-left: 1rem;
-	padding-right: 1rem;
+.card-image {
+	img {
+		max-height: 100%;
+	}
 }
+
+.cardHolder {
+	margin-top: 4rem;
+}
+
+.changeCursor {
+	cursor: pointer;
+}
+
+.postDiv {
+	display: flex;
+	justify-content: center;
+}
+
+.slideshow {
+	margin: 0 auto;
+	width: 500px;
+	height: 500px;
+	img {
+		max-height: 100%;
+	}
+}
+
+.singleImageSlideshow {
+	min-height: 300px;
+	min-width: 300px;
+}
+
+// .socialIcons {
+// 	margin-top: 10%;
+// }

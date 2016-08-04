@@ -1,14 +1,11 @@
 <div ng-controller="NavCtrl">
 	<div class="row">
 		<form class="col s12">
-			<a href="/" class="brand-logo"><img class="logoSmall" src="app/img/logo-small.png"></a>
-			<div class="input-field col s4 right">
+			<a href="/posts" class="brand-logo"><img class="logoSmall" src="app/img/logo-small.png"></a>
+			<div class="input-field col s4 right" ng-show="noSearch">
 	          <input id="search" type="text" class="validate" ng-model="searchText.search">
 	          <label for="search">Search</label>
 	        </div>
 	     </form>
 	</div>
-
-
-
 </div>

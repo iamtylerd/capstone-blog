@@ -4,6 +4,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Angular Blog</title>
+	<meta property="og:title" content="Our Travel Blog" />
+    <meta property="og:description" content="A collection of our Travels" />
 	
 	<link href='https://fonts.googleapis.com/css?family=Raleway:400,200,600' rel='stylesheet' type='text/css'>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -18,6 +20,53 @@
 	<div id="container">
 		<div ng-view></div>
 	</div>
+
+	<!-- Pre Loader -->
+	<!-- LOADING SPINNER -->
+  <div id="loaderContainer" loader>
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spincner-blue">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-red">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-yellow">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-green">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <!-- END OF LOADING SPINNER—>
 	
 <!-- 3rd Party Libs -->
 	<script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
@@ -34,6 +83,12 @@
 	<script src="lib/node_modules/angular-material/angular-material.js"></script>
 	<script src="lib/node_modules/materialize-css/dist/js/materialize.min.js"></script>
 	<script src="lib/node_modules/angular-animate/angular-animate.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.7.1/angular-material-icons.min.js"></script> 
+	<script src="/lib/bower_components/angular-disqus/angular-disqus.min.js"></script> 
+<!-- Custom Dir -->
+	<script src="/lib/bower_components/angular-easy-social-share/easy-social-share.js"></script> 
+
+
 <!-- Firebase Init -->
 	<script ng-include src="partials/fireInit.html"></script>
 <!-- App -->
@@ -43,6 +98,7 @@
 	<script src="app/factories/PostFactory.js"></script>
 	<script src="app/factories/ViewPostsFactory.js"></script>
 	<script src="app/factories/StorageFactory.js"></script>
+	<script src="app/factories/LoaderFactory.js"></script>
 <!-- Controllers -->
 	<script src="app/controllers/LoginCtrl.js"></script>
 	<script src="app/controllers/AdminCtrl.js"></script>

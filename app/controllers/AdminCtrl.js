@@ -1,7 +1,8 @@
-app.controller('AdminCtrl', function($timeout, $scope, $location, PostFactory, FirebaseURL, localStorageService, ViewPostsFactory, Upload, $mdDialog, StorageFactory){
+app.controller('AdminCtrl', function($rootScope, $timeout, $scope, $location, PostFactory, FirebaseURL, localStorageService, ViewPostsFactory, Upload, $mdDialog, StorageFactory){
 	let currentUser = localStorageService.get("currentUser");
 	$scope.LoggedIn = false;
 	$scope.CreateNewPost = false;
+	$scope.noSearch = true;
 	console.log(currentUser)
 	
 	if(currentUser == "null") {
@@ -47,6 +48,17 @@ app.controller('AdminCtrl', function($timeout, $scope, $location, PostFactory, F
 				ViewPostsFactory.getPosts()
 				.then(function(postCollection) {
 				$scope.posts = postCollection
+				$scope.htmlVariable = "";
+				$scope.newBlogPost = {
+					post: "",
+					title: "",
+					category: "",
+					tags: "",
+					uid: currentUser.uid,
+					date: "",
+					image: ""
+				};
+				$rootScope.imageUrl = [];
 				return postCollection
 				})
 			})
@@ -62,6 +74,7 @@ app.controller('AdminCtrl', function($timeout, $scope, $location, PostFactory, F
 		}
 
 		$scope.openModalPhoto = function () {
+			$rootScope.imageDone = false;
 			$mdDialog.show({
 				contentElement:
 				document.querySelector('#upload-modal')
@@ -69,6 +82,7 @@ app.controller('AdminCtrl', function($timeout, $scope, $location, PostFactory, F
 		};
 
 		$scope.hideModal = function() {
+			$rootScope.imageDone = true;
 	    	$mdDialog.hide();
 	 	};
 		
@@ -76,11 +90,16 @@ app.controller('AdminCtrl', function($timeout, $scope, $location, PostFactory, F
 		 $scope.uploadImg = function (file) {
 		  console.log(file.name);
 		  StorageFactory.uploadTask(file, StorageFactory.getMetadata())
+		  // $rootScope.$apply();
 		  $scope.hideModal();
 		};
 
 		$scope.toggleCreateNewPost = function () {
 			$scope.CreateNewPost = !$scope.CreateNewPost;
+		}
+
+		$scope.removeImg = function (array, index) {
+			 array.splice(index, 1);
 		}
 	}
 })

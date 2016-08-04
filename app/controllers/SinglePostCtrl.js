@@ -1,6 +1,7 @@
 "use strict";
 
 app.controller('SinglePostCtrl', function($scope, $location, $routeParams, ViewPostsFactory, FirebaseURL, localStorageService, $timeout) {
+	$scope.noSearch = false;
 	let slides = [];
 	let INTERVAL = 3000;
 	let buildSlideshow = function () {
@@ -40,4 +41,11 @@ app.controller('SinglePostCtrl', function($scope, $location, $routeParams, ViewP
 	}).then(function() {
 		});
 		buildSlideshow();
+
+		//Code for toolbar on singlePost-view.html to open and scale
+	  $scope.speedDial = {};
+	  $scope.speedDial.isOpen = false;
+	  $scope.speedDial.mode = 'md-scale';
+
+
 	})

@@ -16,6 +16,7 @@ app.controller('EditPostCtrl', function($routeParams, $scope, $location, PostFac
 	.then(function(postCollection) {
 		console.log(postCollection)
 		$scope.updatedPost = postCollection
+		$scope.htmlVariable = $scope.updatedPost.post;
 		return postCollection
 	})
 
@@ -27,6 +28,8 @@ app.controller('EditPostCtrl', function($routeParams, $scope, $location, PostFac
 	}
 
 	$scope.patchEditPost = function () {
+		console.log("edit send")
+		$scope.updatedPost.post = $scope.htmlVariable;
 		ViewPostsFactory.sendEditPost($routeParams.id, $scope.updatedPost)
 		.then(function(editResponse) {
 			console.log(editResponse)

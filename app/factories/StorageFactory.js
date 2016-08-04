@@ -1,8 +1,9 @@
 "use strict";
 
-app.factory("StorageFactory", function(FirebaseURL, $q, $http, localStorageService){
+app.factory("StorageFactory", function(FirebaseURL, $q, $http, localStorageService, $rootScope){
 	let currentUser = localStorageService.get("currentUser");
-	let imageUrl = [];
+	$rootScope.imageUrl = [];
+	$rootScope.imageDone = true;
 	
 
 	// Create a root reference
@@ -33,7 +34,9 @@ app.factory("StorageFactory", function(FirebaseURL, $q, $http, localStorageServi
 		  	console.log(file.name)
 		  	let imgRef = storageRef.child('img/' + file.name);
 			imgRef.getDownloadURL().then(function(url) {
-			imageUrl.push(url)
+			$rootScope.imageUrl.push(url)
+			$rootScope.$apply()
+			$rootScope.imageDone = true;
 		  // Handle successful uploads on complete
 		  // For instance, get the download URL: https://firebasestorage.googleapis.com/...
 		 	});
@@ -50,7 +53,7 @@ app.factory("StorageFactory", function(FirebaseURL, $q, $http, localStorageServi
 	}
 
 	let getImageUrl = function () {
-		return imageUrl;
+		return $rootScope.imageUrl;
 	}
 
 		return {uploadTask, getMetadata, fetchDownloadLink, getImageUrl}
