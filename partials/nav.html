@@ -8,4 +8,22 @@
 	        </div>
 	     </form>
 	</div>
+	<div ng-show="loggedIn">
+		<md-fab-speed-dial class="right" md-open="speedDial.isOpen" md-direction="left" ng-class="speedDial.mode">
+			<md-fab-trigger>
+					<md-button class="md-fab md-warn">
+					<md-icon class="material-icons">list</md-icon>
+					</md-button>
+			</md-fab-trigger>
+				<md-fab-actions>
+					<md-button class="md-fab md-raised md-mini">
+						<md-icon class="material-icons green-text" ng-click="goToAdmin()">home</md-icon>
+					</md-button>
+					<md-button class="md-fab md-raised md-mini">
+						<md-icon class="material-icons red-text" ng-click="logout()">cancel</md-icon>
+					</md-button>
+			</md-fab-actions>
+		</md-fab-speed-dial>
+	</div>
 </div>
+

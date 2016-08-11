@@ -71,6 +71,44 @@ app.factory("ViewPostsFactory", function(FirebaseURL, $q, $http, localStorageSer
         });
       };
 
+    let getImg = function() {
+    	let img = [];
+		return $q(function(resolve, reject) {
+			$http.get(`${FirebaseURL}/img.json`)
+			.success(function(imgObject) {
+					if (imgObject) {
+					let imgCollection = imgObject;
+					Object.keys(imgCollection).forEach(function(key) {
+						imgCollection[key].id=key;
+						// imgCollection[key].date = new Date(imgCollection[key].date)
+						img.push(imgCollection[key]);
+					})
+					// img.sort(function (a,b) {
+					// 	a = a.date
+					// 	b = b.date
+					// 	return a>b ? -1 : a<b ? 1:0;
+					// })
+					console.log(img)
+					resolve(img);
+				} else {
+					resolve(imgObject);
+				}
+			})
+			.error(function(error) {
+				reject(error);
+			});
+		})
+	};
 
-	return {getPosts, getEditPost, sendEditPost, deletePost}
+	let removeImg = function(removeId) {
+          let postUrl = FirebaseURL + "/img/" + removeId + ".json";
+          return $q(function(resolve, reject) {
+              $http.delete(postUrl)
+              .success(function() {
+                  resolve();
+          });
+        });
+      };
+
+	return {getPosts, getEditPost, sendEditPost, deletePost, getImg, removeImg}
 })

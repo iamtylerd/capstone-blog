@@ -4,6 +4,8 @@ app.factory("StorageFactory", function(FirebaseURL, $q, $http, localStorageServi
 	let currentUser = localStorageService.get("currentUser");
 	$rootScope.imageUrl = [];
 	$rootScope.imageDone = true;
+	$rootScope.allImages = [];
+	// $rootScope.ImgName;	
 	
 
 	// Create a root reference
@@ -11,6 +13,7 @@ app.factory("StorageFactory", function(FirebaseURL, $q, $http, localStorageServi
 
 	// Image Ref
 	var imagesRef = storageRef.child('img');
+	console.log(imagesRef);
 
   // Create the file metadata
 	let getMetadata = function() {
@@ -33,10 +36,12 @@ app.factory("StorageFactory", function(FirebaseURL, $q, $http, localStorageServi
 		  }, function() {
 		  	console.log(file.name)
 		  	let imgRef = storageRef.child('img/' + file.name);
+		  	$rootScope.ImgName = file.name;
+		  	console.log($rootScope.ImgName)
 			imgRef.getDownloadURL().then(function(url) {
 			$rootScope.imageUrl.push(url)
 			$rootScope.$apply()
-			$rootScope.imageDone = true;
+			// $rootScope.imageDone = true;
 		  // Handle successful uploads on complete
 		  // For instance, get the download URL: https://firebasestorage.googleapis.com/...
 		 	});
@@ -56,6 +61,15 @@ app.factory("StorageFactory", function(FirebaseURL, $q, $http, localStorageServi
 		return $rootScope.imageUrl;
 	}
 
-		return {uploadTask, getMetadata, fetchDownloadLink, getImageUrl}
+	let deleteImgStorage = function (name) {
+		storageRef.child('img/' + name).delete()
+		.then(function() {
+		})
+		.catch(function () {
+		})
+	}
+
+
+		return {uploadTask, getMetadata, fetchDownloadLink, getImageUrl, deleteImgStorage}
 
 	}) 

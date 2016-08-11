@@ -44,7 +44,6 @@ app.controller('LoginCtrl', function($rootScope, $scope, $location, UserFactory,
       localStorageService.set("currentUser", user)
       $scope.$apply(function(){
         $scope.loggedin = true;
-        console.log("logged", user)
       })
     }
     else {

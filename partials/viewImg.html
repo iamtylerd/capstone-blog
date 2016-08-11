@@ -1,0 +1,10 @@
+<div ng-include="'partials/nav.html'"></div>
+<div class="row center">
+	<div ng-repeat="img in imgs | filter: searchText.search" class="">
+		<div class="imgDiv">
+			<img ng-src={{img[0]}}>
+		</div>
+		<button class="deleteImg" ng-click="DeleteImg(img)">Delete</button>
+		<button class="downloadImg">Download Photo</button>
+	</div>
+</div>

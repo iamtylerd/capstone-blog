@@ -2,7 +2,7 @@
 
 app.factory("PostFactory", function($rootScope, FirebaseURL, $q, $http, localStorageService){
 let currentUser = localStorageService.get("currentUser")
-console.log("tokens", currentUser.stsTokenManager)
+// console.log("tokens", currentUser.stsTokenManager)
 
 
 	let postNewBlog = function(newPost) {
@@ -19,6 +19,22 @@ console.log("tokens", currentUser.stsTokenManager)
 	                });
 	        });
 	    };
+
+	let postNewImage = function(newImage) {
+		console.log(newImage)
+		let accessToken = currentUser.stsTokenManager.accessToken
+		console.log(newImage)
+	        return $q(function(resolve, reject) {
+	            $http.post(`${FirebaseURL}img.json?auth=${accessToken}`,
+	                newImage)
+	                .success(function(ObjFromFirebase) {
+	                    resolve(ObjFromFirebase)
+	                })
+	                .error(function (error) {
+	                    reject (error);
+	                });
+	        });
+	    };	
 
 
    let saveId = function(post) {
@@ -38,5 +54,5 @@ console.log("tokens", currentUser.stsTokenManager)
 	let keys = function (post) {
 		return $q(function(resolve, reject) {})
 	}
-    return {postNewBlog, saveId}
+    return {postNewBlog, saveId, postNewImage}
 });

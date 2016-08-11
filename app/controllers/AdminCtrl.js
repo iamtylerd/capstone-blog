@@ -1,9 +1,15 @@
+"use strict";
+
 app.controller('AdminCtrl', function($rootScope, $timeout, $scope, $location, PostFactory, FirebaseURL, localStorageService, ViewPostsFactory, Upload, $mdDialog, StorageFactory){
 	let currentUser = localStorageService.get("currentUser");
 	$scope.LoggedIn = false;
 	$scope.CreateNewPost = false;
 	$scope.noSearch = true;
 	console.log(currentUser)
+	$scope.ImgObj = {
+		"img": $rootScope.imageUrl,
+		"name": $rootScope.ImgName
+	}
 	
 	if(currentUser == "null") {
 		$location.url(`/posts`)
@@ -30,12 +36,6 @@ app.controller('AdminCtrl', function($rootScope, $timeout, $scope, $location, Po
 			return postCollection
 		})
 
-		$scope.logout = function(){
-		    firebase.auth().signOut();
-		    $location.url("/");
-		    console.log("signed out");
-	  	}
-
 
 		$scope.AddPost = function () {
 			console.log($scope.newBlogPost)
@@ -57,11 +57,18 @@ app.controller('AdminCtrl', function($rootScope, $timeout, $scope, $location, Po
 					uid: currentUser.uid,
 					date: "",
 					image: ""
-				};
-				$rootScope.imageUrl = [];
+				}
 				return postCollection
 				})
 			})
+			.then(function () {
+				console.log("imgObj",$scope.ImgObj)
+				PostFactory.postNewImage($scope.ImgObj)
+			})
+			.then(function () {
+				$rootScope.imageUrl = [];
+			})
+				// $scope.$apply()
 		}
 
 		$scope.ViewPost = function (id) {
@@ -90,8 +97,11 @@ app.controller('AdminCtrl', function($rootScope, $timeout, $scope, $location, Po
 		 $scope.uploadImg = function (file) {
 		  console.log(file.name);
 		  StorageFactory.uploadTask(file, StorageFactory.getMetadata())
-		  // $rootScope.$apply();
 		  $scope.hideModal();
+		  console.log($scope.uploadedImg)
+		  $rootScope.imageDone = true;
+		  $scope.uploadedImg = "";
+		  // $scope.uploadedImg.name = "";
 		};
 
 		$scope.toggleCreateNewPost = function () {

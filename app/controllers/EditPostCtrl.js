@@ -1,3 +1,5 @@
+"use strict";
+
 app.controller('EditPostCtrl', function($routeParams, $scope, $location, PostFactory, FirebaseURL, localStorageService, ViewPostsFactory){
 	let currentUser = localStorageService.get("currentUser");
 	$scope.user = currentUser;

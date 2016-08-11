@@ -1,5 +1,5 @@
-
 'use strict';
+
 app.factory("UserFactory", function($http,$q,FirebaseURL){
 
 		let getUserList = function(){

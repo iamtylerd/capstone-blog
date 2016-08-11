@@ -4,6 +4,7 @@ const app = angular.module('app', ['ngRoute', 'LocalStorageModule', 'textAngular
 .constant('FirebaseURL', "https://capstone-blog.firebaseio.com/");
 
 app.config(function($locationProvider) {
+		// $locationProvider.html5Mode(true);
 		$locationProvider.hashPrefix('!');
 	});
 
@@ -34,5 +35,9 @@ app.config(function($routeProvider) {
         	templateUrl: 'partials/singlePost.html',
         	controller: 'SinglePostCtrl'
         }).	
-        otherwise('/');
+        when('/images', {
+        	templateUrl: 'partials/viewImg.html',
+        	controller: 'ViewImagesCtrl'
+        }).
+        otherwise('/#!');
 });
