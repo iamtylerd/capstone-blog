@@ -23,6 +23,8 @@
     "jquery": "^1.9.1",
     "angular-local-storage": "^0.2.7",
     "angular-easy-social-share": "*",
-    "angular-disqus": "^1.1.0"
+    "angular-disqus": "^1.1.0",
+    "textAngular": "^1.5.4",
+    "ngprogress": "^1.1.3"
   }
 }

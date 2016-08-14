@@ -1,13 +1,21 @@
 <div ng-controller="NavCtrl">
-	<div class="row">
-		<form class="col s12">
-			<a href="#!/posts" class="brand-logo"><img class="logoSmall" src="app/img/logo-small.png"></a>
-			<div class="input-field col s4 right" ng-show="noSearch">
-	          <input id="search" type="text" class="validate" ng-model="searchText.search">
-	          <label for="search">Search</label>
-	        </div>
-	     </form>
-	</div>
+
+<nav>
+    <div class="nav-wrapper">
+      <a href="#!/posts" class="brand-logo center"><img class="logoSmall" src="app/img/logo-small.png"></a>
+      <form>
+      <ul class="left">
+      	<li>Welcome, {{User.displayName}}</li>
+      	<li><img ng-src={{User.photoUrl}}></li>
+      </ul>
+        <div class="input-field col s4 right" ng-show="noSearch">
+          <input id="search" type="search" required ng-model="searchText.search">
+          <label for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
 	<div ng-show="loggedIn">
 		<md-fab-speed-dial class="right" md-open="speedDial.isOpen" md-direction="left" ng-class="speedDial.mode">
 			<md-fab-trigger>
@@ -17,13 +25,32 @@
 			</md-fab-trigger>
 				<md-fab-actions>
 					<md-button class="md-fab md-raised md-mini">
+						<md-tooltip>
+    						Admin
+ 					    </md-tooltip>
 						<md-icon class="material-icons green-text" ng-click="goToAdmin()">home</md-icon>
 					</md-button>
 					<md-button class="md-fab md-raised md-mini">
+						<md-tooltip>
+    						Images
+ 					    </md-tooltip>
+						<md-icon class="material-icons blue-text" ng-click="goToImages()">photo library</md-icon>
+					</md-button>
+					<md-button class="md-fab md-raised md-mini">
+						<md-tooltip>
+    						Custom CSS
+ 					    </md-tooltip>
+						<md-icon class="material-icons yellow-text" ng-click="openCustomCss()">code</md-icon>
+					</md-button>
+					<md-button class="md-fab md-raised md-mini">
+						<md-tooltip>
+    						Logout
+ 					    </md-tooltip>
 						<md-icon class="material-icons red-text" ng-click="logout()">cancel</md-icon>
 					</md-button>
 			</md-fab-actions>
 		</md-fab-speed-dial>
 	</div>
+
 </div>
 

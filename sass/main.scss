@@ -2,10 +2,33 @@ body {
 	font-family: 'Raleway', sans-serif;
 }
 
+
+
 .AdminPosts {
 	border: 2px solid black;
 	margin: 5px 0;
 }
+
+.md-dialog-content {
+	width: 300px;
+	height: 300px;
+}
+
+.image-holder {
+	line-height: 0px;
+	color: transparent;
+	font-size: 2rem;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	   font-weight: 300;
+	text-transform: uppercase;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+}
+	.image-holder:hover {
+		line-height: 40px;
+		color: red;
+	}
 
 .logo {
 	max-width: 100%;
@@ -61,6 +84,10 @@ body {
 	min-width: 300px;
 }
 
-// .socialIcons {
-// 	margin-top: 10%;
-// }
+.postShare {
+	padding-bottom: 2rem;
+}
+
+.viewImgContainer {
+	margin-top: 10rem;
+}

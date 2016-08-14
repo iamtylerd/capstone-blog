@@ -1,7 +1,8 @@
 "use strict";
 
-app.factory("ViewPostsFactory", function(FirebaseURL, $q, $http, localStorageService){
+app.factory("ViewPostsFactory", function(FirebaseURL, $q, $http, localStorageService, $rootScope, StorageFactory){
 	let currentUser = localStorageService.get("currentUser")
+	
 	let getPosts = function() {
 		let post = [];
 		return $q(function(resolve, reject) {
@@ -26,6 +27,7 @@ app.factory("ViewPostsFactory", function(FirebaseURL, $q, $http, localStorageSer
 				}
 			})
 			.error(function(error) {
+				
 				reject(error);
 			});
 		})
@@ -61,6 +63,24 @@ app.factory("ViewPostsFactory", function(FirebaseURL, $q, $http, localStorageSer
 		});
 	};
 
+	let editBackground = function(color) {
+		let accessToken = currentUser.stsTokenManager.accessToken
+		let colorObj = {
+			"background-color": color,
+		};
+		console.log(color)
+		return $q(function(resolve, reject) {
+			$http.put(`${FirebaseURL}background/-KP546T3aUPx5CyMHQTJ.json`, JSON.stringify(colorObj))
+			.success(function(response) {
+				console.log("put", response)
+				resolve(response);
+			})
+			.error(function (error) {
+				reject(error);
+			});
+		});
+	};
+
 	let deletePost = function(removeId) {
           let postUrl = FirebaseURL + "/post/" + removeId + ".json";
           return $q(function(resolve, reject) {
@@ -83,11 +103,7 @@ app.factory("ViewPostsFactory", function(FirebaseURL, $q, $http, localStorageSer
 						// imgCollection[key].date = new Date(imgCollection[key].date)
 						img.push(imgCollection[key]);
 					})
-					// img.sort(function (a,b) {
-					// 	a = a.date
-					// 	b = b.date
-					// 	return a>b ? -1 : a<b ? 1:0;
-					// })
+					
 					console.log(img)
 					resolve(img);
 				} else {
@@ -100,15 +116,32 @@ app.factory("ViewPostsFactory", function(FirebaseURL, $q, $http, localStorageSer
 		})
 	};
 
+	let getColor = function() {
+		let color = "";
+		return $q(function(resolve, reject) {
+			$http.get(`${FirebaseURL}/background/-KP546T3aUPx5CyMHQTJ.json`)
+			.success(function(bgColor) {
+				color = bgColor
+				console.log(color)
+					resolve(bgColor);
+				}) 
+			.error(function(error) {
+				reject(error);
+			});
+		})
+	};
+
 	let removeImg = function(removeId) {
-          let postUrl = FirebaseURL + "/img/" + removeId + ".json";
+          let postUrl = FirebaseURL + "/img/" + removeId.id + ".json";
+          console.log(removeId)
           return $q(function(resolve, reject) {
-              $http.delete(postUrl)
+              $http.delete(`${FirebaseURL}/img/${removeId.id}.json`)
               .success(function() {
+              	StorageFactory.deleteImgStorage(removeId.name)
                   resolve();
           });
         });
       };
 
-	return {getPosts, getEditPost, sendEditPost, deletePost, getImg, removeImg}
+	return {getPosts, getEditPost, sendEditPost, deletePost, getImg, removeImg, getColor, editBackground}
 })

@@ -4,7 +4,9 @@ app.controller('NavCtrl', function($scope, $location, PostFactory, FirebaseURL, 
 	let currentUser = localStorageService.get("currentUser");
 	$rootScope.searchText = {};
 	$rootScope.searchText.search = ""
-	// console.log("tokens", currentUser.stsTokenManager)
+	
+
+	$scope.User =localStorageService.get("currentUser");
 
 	//Code for toolbar on singlePost-view.html to open and scale
 	  $scope.speedDial = {};
@@ -28,4 +30,33 @@ app.controller('NavCtrl', function($scope, $location, PostFactory, FirebaseURL, 
 	  $scope.goToAdmin = function () {
 	  		$location.url("/admin")
 	  }
+
+	  $scope.goToImages = function () {
+	  		$location.url("/images")
+	  }
+
+	  $scope.closeModal = function() {
+	 		$mdDialog.hide();
+	 	}
+
+   	  $scope.openCustomCss = function (ev) {
+		$mdDialog.show({
+			targetEvent: ev,
+      		clickOutsideToClose:true,
+      		templateUrl: '/partials/picker.tmpl.html',
+			// contentElement:
+			// document.querySelector('#css-modal')
+		});
+	  };
+
+	  $scope.updateCSS = function(color) {
+	  	ViewPostsFactory.editBackground(color)
+	  	.then(function (){
+	  		ViewPostsFactory.getColor()
+	  	})
+	  	console.log(color)
+	  	$mdDialog.hide();
+	  }
+
+
 });

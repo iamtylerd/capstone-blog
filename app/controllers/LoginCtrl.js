@@ -13,7 +13,7 @@ app.controller('LoginCtrl', function($rootScope, $scope, $location, UserFactory,
         currentUser = firebase.auth().currentUser;
         let currentUid = firebase.auth().currentUser.uid;
         console.log(firebase.auth().currentUser)
-        console.log("currentUser", currentUid)
+        console.log("currentUser", currentUser)
         let userArray = [];
         for (user in userList){
           let index = userList[user];
@@ -28,7 +28,8 @@ app.controller('LoginCtrl', function($rootScope, $scope, $location, UserFactory,
           let userObject = {
             name: currentUser.displayName,
             email: currentUser.email,
-            uid: currentUser.uid
+            uid: currentUser.uid,
+            photoUrl: currentUser.photoURL
           }
           UserFactory.createUser(userObject)
         }

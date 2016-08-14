@@ -4,13 +4,16 @@
 		<div class="singleTitle">
 			<h1>{{singlePost.title}}</h1>
 		</div>
-		<div class="slideshow">
+		<div class="slideshow" ng-show="hasSlides">
 			<img class="singleImageSlideshow responsive-img" ng-repeat="slide in slides" ng-if="isCurrentSlideIndex($index)" ng-src="{{slide.src}}"/>
 		</div>
 		<div ta-bind ng-model="singlePost.post"></div>
-		<md-fab-speed-dial class="right" md-open="speedDial.isOpen" md-direction="left" ng-class="speedDial.mode">
+		<md-fab-speed-dial class="right postShare" md-open="speedDial.isOpen" md-direction="left" ng-class="speedDial.mode">
 	      			<md-fab-trigger>
 	       				 <md-button class="md-fab md-warn">
+		     			 	<md-tooltip>
+	    						Share
+	 					    </md-tooltip>
 	        			  <md-icon class="material-icons">share</md-icon>
 	       				 </md-button>
 	    			  </md-fab-trigger>

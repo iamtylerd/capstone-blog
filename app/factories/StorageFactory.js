@@ -1,11 +1,13 @@
 "use strict";
 
-app.factory("StorageFactory", function(FirebaseURL, $q, $http, localStorageService, $rootScope){
+app.factory("StorageFactory", function(FirebaseURL, $q, $http, localStorageService, $rootScope, $mdToast, ngProgressFactory){
 	let currentUser = localStorageService.get("currentUser");
 	$rootScope.imageUrl = [];
 	$rootScope.imageDone = true;
 	$rootScope.allImages = [];
-	// $rootScope.ImgName;	
+	$rootScope.imgObj = [];
+	
+
 	
 
 	// Create a root reference
@@ -13,7 +15,7 @@ app.factory("StorageFactory", function(FirebaseURL, $q, $http, localStorageServi
 
 	// Image Ref
 	var imagesRef = storageRef.child('img');
-	console.log(imagesRef);
+	
 
   // Create the file metadata
 	let getMetadata = function() {
@@ -31,6 +33,10 @@ app.factory("StorageFactory", function(FirebaseURL, $q, $http, localStorageServi
 		.on('state_changed', function(snapshot){
 		  // Observe state change events such as progress, pause, and resume
 		  // See below for more detail
+		  	// var progress = Math.round(100 * (snapshot.bytesTransferred / snapshot.totalBytes));
+		  	// console.log(progress)
+		  	// progressToast(progress)
+    		
 		  }, function(error) {
 		  // Handle unsuccessful uploads
 		  }, function() {
@@ -38,10 +44,14 @@ app.factory("StorageFactory", function(FirebaseURL, $q, $http, localStorageServi
 		  	let imgRef = storageRef.child('img/' + file.name);
 		  	$rootScope.ImgName = file.name;
 		  	console.log($rootScope.ImgName)
-			imgRef.getDownloadURL().then(function(url) {
+			imgRef.getDownloadURL()
+			.then(function(url) {
 			$rootScope.imageUrl.push(url)
+			$rootScope.imgObj.push({url: url, name: $rootScope.ImgName})
+			$rootScope.imageDone = true;
+			$mdToast.show($mdToast.simple().textContent('Upload is done').position("right"));
+			console.log($rootScope.imgObj)
 			$rootScope.$apply()
-			// $rootScope.imageDone = true;
 		  // Handle successful uploads on complete
 		  // For instance, get the download URL: https://firebasestorage.googleapis.com/...
 		 	});
@@ -64,10 +74,16 @@ app.factory("StorageFactory", function(FirebaseURL, $q, $http, localStorageServi
 	let deleteImgStorage = function (name) {
 		storageRef.child('img/' + name).delete()
 		.then(function() {
+
 		})
 		.catch(function () {
 		})
 	}
+
+	// let progressToast = function (progress) {
+	// 	$mdToast.show($mdToast.simple().textContent('Upload is ' + progress + '% done').position("right"));
+	// }
+
 
 
 		return {uploadTask, getMetadata, fetchDownloadLink, getImageUrl, deleteImgStorage}

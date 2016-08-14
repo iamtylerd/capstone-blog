@@ -1,14 +1,16 @@
 <div ng-include="'partials/nav.html'"></div>
-<div class="row center">
-	<div ng-repeat="post in posts | filter: searchText.search" class="">
-		<div class="blogPosts changeCursor col s8 center offset-s2" ng-click="SinglePostLocation(post.id)">
-			<div class="postTitle">
-				<h1 class="center-align">{{post.title}}</h1>	
+<div class="viewBackgroundColor" ng-style="customBG">
+	<div class="row center">
+		<div ng-repeat="post in posts | filter: searchText.search" class="">
+			<div class="blogPosts changeCursor col s8 center offset-s2" ng-click="SinglePostLocation(post.id)">
+				<div class="postTitle">
+					<h1 class="center-align">{{post.title}}</h1>	
+				</div>
+				<div class="imagePost">
+					<img class="responsive-img" ng-src={{post.image[0]}}/>
+				</div>
+				<div ta-bind ng-model="post.post" class="center-align"></div>
 			</div>
-			<div class="imagePost">
-				<img class="responsive-img" ng-src={{post.image[0]}}/>
-			</div>
-			<div ta-bind ng-model="post.post" class="center-align"></div>
 		</div>
 	</div>
 </div>

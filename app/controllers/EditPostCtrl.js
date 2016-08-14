@@ -11,7 +11,8 @@ app.controller('EditPostCtrl', function($routeParams, $scope, $location, PostFac
 		"category": "",
 		"tags": "",
 		"uid": currentUser.uid,
-		"date": ""
+		"date": "",
+		"image": ""
 	};
 	
 	ViewPostsFactory.getEditPost($routeParams.id)
@@ -19,6 +20,7 @@ app.controller('EditPostCtrl', function($routeParams, $scope, $location, PostFac
 		console.log(postCollection)
 		$scope.updatedPost = postCollection
 		$scope.htmlVariable = $scope.updatedPost.post;
+		console.log($scope.updatedPost.image)
 		return postCollection
 	})
 
@@ -45,5 +47,10 @@ app.controller('EditPostCtrl', function($routeParams, $scope, $location, PostFac
 			$location.url("/admin")
 		});
 	}
+
+	$scope.removeImg = function (array, index) {
+			console.log(array)
+			 array.splice(index, 1);
+		}
 
 });

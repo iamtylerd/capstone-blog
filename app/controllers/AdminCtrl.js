@@ -1,15 +1,12 @@
 "use strict";
 
-app.controller('AdminCtrl', function($rootScope, $timeout, $scope, $location, PostFactory, FirebaseURL, localStorageService, ViewPostsFactory, Upload, $mdDialog, StorageFactory){
+app.controller('AdminCtrl', function($rootScope, $timeout, $scope, $location, PostFactory, FirebaseURL, localStorageService, ViewPostsFactory, Upload, $mdDialog, StorageFactory, ngProgressFactory){
 	let currentUser = localStorageService.get("currentUser");
 	$scope.LoggedIn = false;
 	$scope.CreateNewPost = false;
 	$scope.noSearch = true;
 	console.log(currentUser)
-	$scope.ImgObj = {
-		"img": $rootScope.imageUrl,
-		"name": $rootScope.ImgName
-	}
+	// $rootScope.ImgObj = [];
 	
 	if(currentUser == "null") {
 		$location.url(`/posts`)
@@ -44,7 +41,11 @@ app.controller('AdminCtrl', function($rootScope, $timeout, $scope, $location, Po
 			$scope.newBlogPost.date = date;
 			$scope.newBlogPost.post = $scope.htmlVariable;
 			PostFactory.postNewBlog($scope.newBlogPost)
-			.then(function () {
+			.then(function (postKey) {
+				$rootScope.imgObj.forEach(function (single) {
+					PostFactory.postNewImage(single)
+				})
+				console.log("imgObj", $rootScope.imgObj)
 				ViewPostsFactory.getPosts()
 				.then(function(postCollection) {
 				$scope.posts = postCollection
@@ -58,11 +59,12 @@ app.controller('AdminCtrl', function($rootScope, $timeout, $scope, $location, Po
 					date: "",
 					image: ""
 				}
+				$scope.toggleCreateNewPost()
 				return postCollection
 				})
 			})
-			.then(function () {
-				console.log("imgObj",$scope.ImgObj)
+			.then(function (ObjFromFirebase) {
+				console.log("imgObj",ObjFromFirebase)
 				PostFactory.postNewImage($scope.ImgObj)
 			})
 			.then(function () {
@@ -89,17 +91,22 @@ app.controller('AdminCtrl', function($rootScope, $timeout, $scope, $location, Po
 		};
 
 		$scope.hideModal = function() {
-			$rootScope.imageDone = true;
+			$rootScope.imageDone = false;
 	    	$mdDialog.hide();
 	 	};
+
+	 	$scope.closeModal = function() {
+	 		$rootScope.imageDone = true;
+	 		$mdDialog.hide();
+	 	}
 		
 
 		 $scope.uploadImg = function (file) {
-		  console.log(file.name);
+		  $rootScope.imageDone = false;
+		 	
 		  StorageFactory.uploadTask(file, StorageFactory.getMetadata())
 		  $scope.hideModal();
 		  console.log($scope.uploadedImg)
-		  $rootScope.imageDone = true;
 		  $scope.uploadedImg = "";
 		  // $scope.uploadedImg.name = "";
 		};
@@ -111,5 +118,6 @@ app.controller('AdminCtrl', function($rootScope, $timeout, $scope, $location, Po
 		$scope.removeImg = function (array, index) {
 			 array.splice(index, 1);
 		}
+
 	}
 })

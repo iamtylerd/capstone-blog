@@ -1,9 +1,9 @@
 "use strict";
 
-app.factory("PostFactory", function($rootScope, FirebaseURL, $q, $http, localStorageService){
+app.factory("PostFactory", function($rootScope, FirebaseURL, $q, $http, localStorageService, ViewPostsFactory){
 let currentUser = localStorageService.get("currentUser")
-// console.log("tokens", currentUser.stsTokenManager)
-
+console.log("tokens", currentUser.stsTokenManager)
+let photoCheckArray = [];
 
 	let postNewBlog = function(newPost) {
 		let accessToken = currentUser.stsTokenManager.accessToken
@@ -21,12 +21,10 @@ let currentUser = localStorageService.get("currentUser")
 	    };
 
 	let postNewImage = function(newImage) {
-		console.log(newImage)
 		let accessToken = currentUser.stsTokenManager.accessToken
-		console.log(newImage)
 	        return $q(function(resolve, reject) {
 	            $http.post(`${FirebaseURL}img.json?auth=${accessToken}`,
-	                newImage)
+	                JSON.stringify(newImage))
 	                .success(function(ObjFromFirebase) {
 	                    resolve(ObjFromFirebase)
 	                })
@@ -34,7 +32,8 @@ let currentUser = localStorageService.get("currentUser")
 	                    reject (error);
 	                });
 	        });
-	    };	
+	    };		
+		
 
 
    let saveId = function(post) {

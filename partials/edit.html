@@ -1,9 +1,16 @@
+<div ng-include="'partials/nav.html'"></div>
+
 <div class="row">
 	<div class="EditPost center s12">
 		<input type="text" class="title" ng-show="toggleEditTitle" ng-model="updatedPost.title">
 		<div class="titleDiv" ng-click="toggleEditTitleFn()"" ng-hide="toggleEditTitle"><h1>{{updatedPost.title}}</h1>
 	</div>
 </div>
+<div class="row">
+				<div class="image-holder col s1"  ng-repeat="img in updatedPost.image">
+					<img class="responsive-img" ng-src="{{img}}" ng-click="removeImg(updatedPost.image, $index)">
+				</div>
+			</div>
 <div class="row">
 	<div text-angular class="textAngDiv center col s10 push-s1" ng-model="htmlVariable" ng-show="toggleEditPost">
 		<textarea placeholder="Edit Post" cols="30" rows="10" ng-model="htmlVariable"></textarea>
