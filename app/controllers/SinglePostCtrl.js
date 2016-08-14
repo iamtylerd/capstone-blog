@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('SinglePostCtrl', function($scope, $location, $routeParams, ViewPostsFactory, FirebaseURL, localStorageService, $timeout) {
+app.controller('SinglePostCtrl', function( $scope, $location, $routeParams, ViewPostsFactory, FirebaseURL, localStorageService, $timeout) {
 	$scope.noSearch = false;
 	$scope.hasSlides = false;
 	let slides = [];
@@ -52,6 +52,13 @@ app.controller('SinglePostCtrl', function($scope, $location, $routeParams, ViewP
 	  $scope.speedDial = {};
 	  $scope.speedDial.isOpen = false;
 	  $scope.speedDial.mode = 'md-scale';
+
+	  ViewPostsFactory.getColor()
+		.then(function(bgColor) {
+			console.log(bgColor)
+			let color = bgColor.color
+			$scope.customBG = bgColor;
+	})
 
 
 

@@ -19,6 +19,24 @@
 	<!-- <base href="/#!/"> -->
 </head>
 <body ng-app="app">
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1603724316593104',
+      xfbml      : true,
+      version    : 'v2.7'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
 	<!-- NAV include -->
 	<div id="container">
 		<div ng-view></div>
@@ -94,6 +112,7 @@
 <!-- Custom Dir -->
 	<script src="/lib/bower_components/angular-easy-social-share/easy-social-share.js"></script> 
 	<script src="/lib/node_modules/angularjs-color-picker/dist/angularjs-color-picker.js"></script> 
+	<script src="/lib/bower_components/angular-read-more/dist/readmore.min.js"></script> 
 
 
 <!-- Firebase Init -->
@@ -106,6 +125,7 @@
 	<script src="app/factories/ViewPostsFactory.js"></script>
 	<script src="app/factories/StorageFactory.js"></script>
 	<script src="app/factories/LoaderFactory.js"></script>
+	
 <!-- Controllers -->
 	<script src="app/controllers/LoginCtrl.js"></script>
 	<script src="app/controllers/AdminCtrl.js"></script>

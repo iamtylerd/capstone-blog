@@ -1,52 +1,66 @@
 <div ng-controller="NavCtrl">
 
 <nav>
-    <div class="nav-wrapper">
-      <a href="#!/posts" class="brand-logo center"><img class="logoSmall" src="app/img/logo-small.png"></a>
-      <form>
-      <ul class="left">
-      	<li>Welcome, {{User.displayName}}</li>
-      	<li><img ng-src={{User.photoUrl}}></li>
+    <div class="nav-wrapper indigo lighten-5">
+      <a href="#!/posts" class="brand-logo center"><md-tooltip>View Blog</md-tooltip><img class="logoSmall" src="app/img/logo-small.png"></a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse" ng-show="noSearch"><i class="material-icons">menu</i></a>
+      <form class="hide-on-med-and-down">
+      <ul class="left" ng-show="loggedIn">
+      	<li><span class="welcomeSpan">Welcome, {{User.displayName}}</span></li>
+      	<li class="userPhoto"><img class="responsive-img userPhotoImg" ng-src={{User.photoURL}}></li>
       </ul>
         <div class="input-field col s4 right" ng-show="noSearch">
           <input id="search" type="search" required ng-model="searchText.search">
-          <label for="search"><i class="material-icons">search</i></label>
+          <label for="search"><i class="material-icons md-dark">search</i></label>
           <i class="material-icons">close</i>
         </div>
       </form>
+
+      <form class="side-nav" id="mobile-demo" ng-show="noSearch">
+      <ul class="left" ng-show="loggedIn">
+      	<li><span class="welcomeSpan">Welcome, {{User.displayName}}</span></li>
+      	<li class="userPhoto"><img class="responsive-img userPhotoImg" ng-src={{User.photoURL}}></li>
+      </ul>
+        <div class="input-field col s4 right">
+          <input class="col s2" id="search" type="search" required ng-model="searchText.search">
+          <label for="search"><i class="material-icons md-dark">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+
     </div>
   </nav>
 	<div ng-show="loggedIn">
-		<md-fab-speed-dial class="right" md-open="speedDial.isOpen" md-direction="left" ng-class="speedDial.mode">
+		<md-fab-speed-dial class="right speedDialClass" md-open="speedDial.isOpen" md-direction="left" ng-class="speedDial.mode">
 			<md-fab-trigger>
-					<md-button class="md-fab md-warn">
+					<md-button class="md-fab orange lighten-1">
 					<md-icon class="material-icons">list</md-icon>
 					</md-button>
 			</md-fab-trigger>
 				<md-fab-actions>
-					<md-button class="md-fab md-raised md-mini">
+					<md-button class="md-fab md-raised md-mini" ng-click="goToAdmin()">
 						<md-tooltip>
     						Admin
  					    </md-tooltip>
-						<md-icon class="material-icons green-text" ng-click="goToAdmin()">home</md-icon>
+						<md-icon class="material-icons green-text">home</md-icon>
 					</md-button>
-					<md-button class="md-fab md-raised md-mini">
+					<md-button class="md-fab md-raised md-mini" ng-click="goToImages()">
 						<md-tooltip>
     						Images
  					    </md-tooltip>
-						<md-icon class="material-icons blue-text" ng-click="goToImages()">photo library</md-icon>
+						<md-icon class="material-icons blue-text">photo library</md-icon>
 					</md-button>
-					<md-button class="md-fab md-raised md-mini">
+					<md-button class="md-fab md-raised md-mini" ng-click="openCustomCss()">
 						<md-tooltip>
     						Custom CSS
  					    </md-tooltip>
-						<md-icon class="material-icons yellow-text" ng-click="openCustomCss()">code</md-icon>
+						<md-icon class="material-icons yellow-text">code</md-icon>
 					</md-button>
-					<md-button class="md-fab md-raised md-mini">
+					<md-button class="md-fab md-raised md-mini" ng-click="logout()">
 						<md-tooltip>
     						Logout
  					    </md-tooltip>
-						<md-icon class="material-icons red-text" ng-click="logout()">cancel</md-icon>
+						<md-icon class="material-icons red-text">cancel</md-icon>
 					</md-button>
 			</md-fab-actions>
 		</md-fab-speed-dial>

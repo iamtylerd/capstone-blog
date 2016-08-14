@@ -5,13 +5,14 @@ app.controller('AdminCtrl', function($rootScope, $timeout, $scope, $location, Po
 	$scope.LoggedIn = false;
 	$scope.CreateNewPost = false;
 	$scope.noSearch = true;
-	console.log(currentUser)
+	// console.log(currentUser)
 	// $rootScope.ImgObj = [];
 	
 	if(currentUser == "null") {
 		$location.url(`/posts`)
 	}
 	else {
+		console.log($scope.LoggedIn)
 		$scope.LoggedIn = true;
 		$scope.user = currentUser;
 		$scope.htmlVariable;

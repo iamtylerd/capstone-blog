@@ -3,7 +3,7 @@
 
 <div class="newBlogPost" >
 	<div class="createNewPost">
-		<h2>Make a new Post!</h2><a class="btn-floating btn-large waves-effect waves-light teal accent-4" ng-click="toggleCreateNewPost()"><i class="material-icons">add</i></a>
+		<h2>Make a new Post!</h2><a class="btn-floating btn-large waves-effect waves-light green lighten-1" ng-click="toggleCreateNewPost()"><i class="material-icons">add</i></a>
 	</div>
 
 	<!-- Create new post -->
@@ -22,7 +22,7 @@
 					Delete
 				</div>
 			</div>
-			<div text-angular class="textAngDiv" ng-model="htmlVariable">
+			<div text-angular class="textAngDiv" ng-model="htmlVariable" ta-default-wrap="">
 				<textarea placeholder="Blog Post" cols="30" rows="10" ng-model="htmlVariable"></textarea>
 			</div>
 			<div class="boardBtnBox">
@@ -41,10 +41,11 @@
               <img ng-src="{{post.image[0]}}">
               <span class="card-title">{{post.title}}</span>
             </div>
-            <div class="card-content changeCursor" ta-bind ng-model="post.post" ng-click="EditPostLocation(post.id)">
+            <div class="card-content" ta-bind ng-model="post.post">
             </div>
             <div class="card-action">
               <a class="changeCursor" ng-click="ViewPost(post.id)">View Post</a>
+              <a class="changeCursor" ng-click="EditPostLocation(post.id)">Edit Post</a>
             </div>
           </div>
         </div>
