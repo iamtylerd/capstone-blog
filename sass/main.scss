@@ -1,6 +1,93 @@
 body {
 	font-family: 'Raleway', sans-serif;
 }
+
+
+// Spalsh
+
+.welcomeHeading {
+	color: white;
+}
+
+.headerDiv {
+	margin: 0;
+	padding: 0 !important;
+	height: 75vh;
+	background-size: cover;
+	background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+	img {
+		max-height: 50vh;
+	}
+}
+
+.headerList {
+	box-sizing: content-box;
+	margin-top: 25%;
+	background-color: rgba(125, 125, 125, 0.7);
+	border-radius: 10%;
+	ul {
+		list-style-position: inside;
+		li {
+			color: white;
+			padding-top: 1rem;
+			padding-bottom: 1rem;
+			font-size: 1.5rem;
+			list-style-type: circle;
+		}
+	}
+}
+
+.mobileRow {
+	background-color: rgba(215, 83, 51, 0.8);
+}
+
+.mobileImg {
+	padding-left: 0 !important;
+}
+
+.mobileDesc {
+	padding-top: 8% !important;
+	ul {
+		list-style-position: inside;
+		li {
+			list-style-type: square;
+		}
+	}
+}
+
+.fullWidthDiv {
+	background-image: url("../app/img/imgHeaderOpen.jpg");
+	height: 100vh;
+}
+
+.callToAction {
+
+}
+
+.hrClass {
+	border-top: 1px solid #8c8b8b;
+	border-bottom: 1px solid #fff;
+	margin-bottom: 2rem;
+}
+
+.hrClass:after {
+	content: '';
+	display: block;
+	margin-top: 2px;
+	border-top: 1px solid #8c8b8b;
+	border-bottom: 1px solid #fff;
+}
+
+.footerText {
+
+}
+
+
+
+
+
 // Nav
 .logo {
 	max-width: 100%;
@@ -119,5 +206,3 @@ body {
 .viewImgContainer {
 	margin-top: 10rem;
 }
-
-
