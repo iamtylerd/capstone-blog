@@ -1,11 +1,11 @@
 <div ng-include="'partials/nav.html'"></div>
-<div class="row">
+<div class="row" ng-style="customBG">
 	<div class="singlePostDiv col s8 center offset-s2">
 		<div class="singleTitle">
 			<h1>{{singlePost.title}}</h1>
 		</div>
 		<div class="slideshow" ng-show="hasSlides">
-			<img class="singleImageSlideshow responsive-img" ng-repeat="slide in slides" ng-if="isCurrentSlideIndex($index)" ng-src="{{slide.src}}"/>
+			<img class="singleImageSlideshow responsive-img" ng-repeat="slide in slides" ng-if="isCurrentSlideIndex($index)" ng-src="{{slide.src}}" err-src="app/img/404err.jpg"/>
 		</div>
 		<div ta-bind ng-model="singlePost.post"></div>
 		<md-fab-speed-dial class="right postShare" md-open="speedDial.isOpen" md-direction="left" ng-class="speedDial.mode">
@@ -19,7 +19,7 @@
 	    			  </md-fab-trigger>
 	     			 <md-fab-actions>
 	       				 <md-button aria-label="Facebook Share" share="true" class="md-fab md-raised md-mini iconBtn">
-	       				 	<div share="true" share-links="Facebook" share-title={{singlePost.title}}></div>
+	       				 	<div share="true" facebook class="facebookShare" share-links="Facebook" data-url='http://google.com' data-shares='shares' share-title={{singlePost.title}}></div>
 	       				 </md-button>
 	       				 <md-button aria-label="Twitter Share" share="true" class="md-fab md-raised md-mini">
 	       				 	<div share="true" share-links="Twitter" share-title={{singlePost.title}}></div>

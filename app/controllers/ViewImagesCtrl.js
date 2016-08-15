@@ -14,13 +14,15 @@ app.controller('ViewImagesCtrl', function($rootScope, $window, $scope, $location
 	$scope.DeleteImg = function(img) {
 		console.log(img)
 		ViewPostsFactory.removeImg(img)
+		.then(function () {
+			ViewPostsFactory.getImg()
+				.then(function(postCollection) {
+				$scope.imgs = postCollection
+				return postCollection 
+			})
+		})
 		// StorageFactory.deleteImgStorage(img.name)
 		
-		ViewPostsFactory.getImg()
-			.then(function(postCollection) {
-			$scope.imgs = postCollection
-			return postCollection
-	})
 	}
 
 	$scope.GetName = function(name) {

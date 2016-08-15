@@ -132,12 +132,12 @@ app.factory("ViewPostsFactory", function(FirebaseURL, $q, $http, localStorageSer
 	};
 
 	let removeImg = function(removeId) {
-          let postUrl = FirebaseURL + "/img/" + removeId.id + ".json";
+        let img = removeId
           console.log(removeId)
           return $q(function(resolve, reject) {
-              $http.delete(`${FirebaseURL}/img/${removeId.id}.json`)
+              $http.delete(`${FirebaseURL}/img/${img.id}.json`)
               .success(function() {
-              	StorageFactory.deleteImgStorage(removeId.name)
+              	StorageFactory.deleteImgStorage(img.name)
                   resolve();
           });
         });

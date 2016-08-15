@@ -2,7 +2,7 @@
 
 app.factory("PostFactory", function($rootScope, FirebaseURL, $q, $http, localStorageService, ViewPostsFactory){
 let currentUser = localStorageService.get("currentUser")
-console.log("tokens", currentUser.stsTokenManager)
+// console.log("tokens", currentUser.stsTokenManager)
 let photoCheckArray = [];
 
 	let postNewBlog = function(newPost) {

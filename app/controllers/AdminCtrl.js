@@ -5,9 +5,8 @@ app.controller('AdminCtrl', function($rootScope, $timeout, $scope, $location, Po
 	$scope.LoggedIn = false;
 	$scope.CreateNewPost = false;
 	$scope.noSearch = true;
-	console.log(currentUser)
-	// $rootScope.ImgObj = [];
-	
+
+	// Checks to see if the current user is logged in and re routes
 	if(currentUser == "null") {
 		$location.url(`/posts`)
 	}
@@ -27,13 +26,15 @@ app.controller('AdminCtrl', function($rootScope, $timeout, $scope, $location, Po
 			image: $scope.addImage
 		};
 		
+
+// Get posts
 		ViewPostsFactory.getPosts()
 		.then(function(postCollection) {
 			$scope.posts = postCollection
 			return postCollection
 		})
 
-
+// Post to Firebase
 		$scope.AddPost = function () {
 			console.log($scope.newBlogPost)
 			let date = new Date();
@@ -42,6 +43,7 @@ app.controller('AdminCtrl', function($rootScope, $timeout, $scope, $location, Po
 			$scope.newBlogPost.post = $scope.htmlVariable;
 			PostFactory.postNewBlog($scope.newBlogPost)
 			.then(function (postKey) {
+				console.log($rootScope.imgObj)
 				$rootScope.imgObj.forEach(function (single) {
 					PostFactory.postNewImage(single)
 				})
@@ -63,14 +65,11 @@ app.controller('AdminCtrl', function($rootScope, $timeout, $scope, $location, Po
 				return postCollection
 				})
 			})
-			.then(function (ObjFromFirebase) {
-				console.log("imgObj",ObjFromFirebase)
-				PostFactory.postNewImage($scope.ImgObj)
-			})
 			.then(function () {
 				$rootScope.imageUrl = [];
+				$rootScope.imgObj = [];
 			})
-				// $scope.$apply()
+				
 		}
 
 		$scope.ViewPost = function (id) {
@@ -100,7 +99,7 @@ app.controller('AdminCtrl', function($rootScope, $timeout, $scope, $location, Po
 	 		$mdDialog.hide();
 	 	}
 		
-
+// Upload to storage
 		 $scope.uploadImg = function (file) {
 		  $rootScope.imageDone = false;
 		 	
