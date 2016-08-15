@@ -5,6 +5,8 @@ app.controller('EditPostCtrl', function($routeParams, $scope, $location, PostFac
 	$scope.user = currentUser;
 	$scope.toggleEditTitle = false;
 	$scope.toggleEditPost = false;
+	
+// Create updated object
 	$scope.updatedPost = {
 		"post": "",
 		"title": "",
@@ -15,6 +17,7 @@ app.controller('EditPostCtrl', function($routeParams, $scope, $location, PostFac
 		"image": ""
 	};
 	
+// Get specific post
 	ViewPostsFactory.getEditPost($routeParams.id)
 	.then(function(postCollection) {
 		console.log(postCollection)
@@ -31,6 +34,7 @@ app.controller('EditPostCtrl', function($routeParams, $scope, $location, PostFac
 		$scope.toggleEditPost = !$scope.toggleEditPost;
 	}
 
+// Update post in FB
 	$scope.patchEditPost = function () {
 		console.log("edit send")
 		$scope.updatedPost.post = $scope.htmlVariable;

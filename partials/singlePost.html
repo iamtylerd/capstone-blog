@@ -5,7 +5,7 @@
 			<h1>{{singlePost.title}}</h1>
 		</div>
 		<div class="slideshow" ng-show="hasSlides">
-			<img class="singleImageSlideshow responsive-img" ng-repeat="slide in slides" ng-if="isCurrentSlideIndex($index)" ng-src="{{slide.src}}"/>
+			<img class="singleImageSlideshow responsive-img" ng-repeat="slide in slides" ng-if="isCurrentSlideIndex($index)" ng-src="{{slide.src}}" err-src="app/img/404err.jpg"/>
 		</div>
 		<div ta-bind ng-model="singlePost.post"></div>
 		<md-fab-speed-dial class="right postShare" md-open="speedDial.isOpen" md-direction="left" ng-class="speedDial.mode">

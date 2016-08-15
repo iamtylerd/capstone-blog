@@ -38,7 +38,7 @@
         <div class="col s12 m6 singleCard" ng-repeat="post in posts | filter: searchText.search">
           <div class="card">
             <div class="card-image cardImage">
-              <img ng-src="{{post.image[0]}}">
+              <img ng-src="{{post.image[0]}}" err-src="app/img/404err.jpg">
               <span class="card-title">{{post.title}}</span>
             </div>
             <div class="card-content" ta-bind ng-model="post.post">
@@ -62,8 +62,8 @@
         			<input class="file-path validate" type="text" ng-model="uploadedImg.name">
       				</div>
     			</div>
-				<button ng-click="uploadImg(uploadedImg)">2. Upload</button>
-				<button ng-click="closeModal()">Close</button>
+				<button class="btn btn-normal green" ng-click="uploadImg(uploadedImg)">2. Upload</button>
+				<button class="btn red" ng-click="closeModal()">Close</button>
 			</form>
 		</md-dialog>
 	</div>

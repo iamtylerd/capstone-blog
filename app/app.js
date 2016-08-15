@@ -1,6 +1,6 @@
 "use strict";
 
-const app = angular.module('app', ['ngRoute', 'LocalStorageModule', 'textAngular', 'ngFileUpload', 'ngMaterial', 'ngAnimate', 'td.easySocialShare', 'ngDisqus', 'ngMdIcons', 'ngProgress', 'angular.filter', 'color.picker', 'hm.readmore' ])
+const app = angular.module('app', ['ngRoute', 'LocalStorageModule', 'textAngular', 'ngFileUpload', 'ngMaterial', 'ngAnimate', 'td.easySocialShare', 'ngDisqus', 'ngMdIcons', 'ngProgress', 'angular.filter', 'color.picker' ])
 .constant('FirebaseURL', "https://capstone-blog.firebaseio.com/");
 
 app.config(function($locationProvider) {
@@ -11,6 +11,18 @@ app.config(function($locationProvider) {
 app.config(function($disqusProvider){
       $disqusProvider.setShortname("nsstest");
    });
+
+app.directive('errSrc', function() {
+  return {
+    link: function(scope, element, attrs) {
+      element.bind('error', function() {
+        if (attrs.src !== attrs.errSrc) {
+          attrs.$set('src', attrs.errSrc);
+        }
+      });
+    }
+  };
+});
 
 
 

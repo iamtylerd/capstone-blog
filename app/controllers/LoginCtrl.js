@@ -4,7 +4,7 @@ app.controller('LoginCtrl', function($rootScope, $scope, $location, UserFactory,
   let userExists = false
   let currentUser = null
   
-
+// Check for a user logged in / Create new user
   $scope.login = function(){
     let provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(user){
