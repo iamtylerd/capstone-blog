@@ -1,16 +1,57 @@
 <div class="row">
-	<div class="logoHeader col s8 offset-s2">
-		<img src="app/img/logo.png" class="logo"/>
+	<div class="col s12 headerDiv" style="background-image: url('app/img/imgHeaderlow.jpg')">
+		<div class="col s8 offset-s2 center">
+			<h2 class="welcomeHeading">Welcome to Blogular!</h2>
+		</div>
 	</div>
+</div>
+<div class="row mobileRow">
+	<div class="col m8 mobileImg">
+		<img class="responsive-img" src="app/img/iphoneView.jpg"/>
 	</div>
+		<div class="col m4 mobileDesc">
+				<h4>Blogular Mobile</h4>
+				<ul>
+					<li>Fully respsonsive with collapsed menu.</li>
+					<li>Dynamically create slideshows for fullscreen and mobile views.</li>
+					<li>Custom search function and responsive images with a storage bucket included.</li>
+				</ul>
+		</div>	
+</div>
 <div class="row">
-	<div class="col s12 center">
-		<i class="material-icons large center">keyboard_arrow_down</i>	
+	<div class="col s12 fullWidthDiv">
+		
+		<div class="col s4">
+			<div class="card-panel headerList">
+				<ul>
+					<li>Blogular has user authentication with Google and allows only the admin to create/edit/delete posts.</li>
+					<li>It also allows for embedded and playable Youtube videos.</li>
+					<li>Blogular comes with an AWESOME WYSIWYG editor.</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>
 
+<div class="row callToAction">
+	<form class="col s8  offset-s3">
+		<p>Enter an email to get notified of the launch!</p>
+		<div class="input-field col s6">
+          <input id="signUp" type="text" class="validate">
+          <label for="signUp">Email</label>
+        </div>
+        <div class="col s2">
+       		<a class="col btn green"><i class="material-icons left">send</i>Send</a>	
+        </div>
+	</form>
+</div>
+<hr class="hrClass">
 <div class="loginBtn col s12 center">
-	<a class="waves-effect waves-light btn" ng-click="login()"><i class="material-icons left">person_pin</i>Login</a>
+	<a class="waves-effect waves-light btn-large" ng-click="login()"><i class="material-icons left">person_pin</i>Login</a>
 </div>
 
-  
+  <footer class="page-footer teal lighten-5">
+	  <div class="footer-copyright teal darken-2">
+	     <a class="grey-text text-lighten-4 center" href="http://www.instagram.com/iamtylerd">© 2016 iamtylerd</a>
+	  </div>
+  </footer>
