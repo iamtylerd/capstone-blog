@@ -1,13 +1,16 @@
 "use strict";
 
 app.controller('NavCtrl', function($scope, $location, PostFactory, FirebaseURL, localStorageService, ViewPostsFactory, Upload, $mdDialog, StorageFactory, $rootScope){
-	let currentUser = localStorageService.get("currentUser");
+	let currentUser = localStorageService.get("currentUser")
 	$rootScope.searchText = {};
 	$rootScope.searchText.search = ""
 	$(".button-collapse").sideNav();
 
+	
+
 
 	$scope.User =localStorageService.get("currentUser");
+	
 	
 	
 	//Code for toolbar on singlePost-view.html to open and scale
