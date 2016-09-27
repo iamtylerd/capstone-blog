@@ -3,7 +3,7 @@
 app.controller('LoginCtrl', function($rootScope, $scope, $location, UserFactory, localStorageService, StorageFactory){
   let userExists = false
   let currentUser = null
-  
+
 // Check for a user logged in / Create new user
   $scope.login = function(){
     let provider = new firebase.auth.GoogleAuthProvider();
@@ -55,13 +55,4 @@ app.controller('LoginCtrl', function($rootScope, $scope, $location, UserFactory,
       localStorageService.set("currentUser", "null")
     }
   });
-
-  
-
-
-
-
-
-
-
 })
